@@ -33,7 +33,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Table(name = "gira_group")
 public class GiraGroup extends BaseEntity {
-	@Size(max = 30 , min =  3 )
+	@Size(max = 100 , min =  3 )
 	private String code;
 	@NotBlank
 	private String description;

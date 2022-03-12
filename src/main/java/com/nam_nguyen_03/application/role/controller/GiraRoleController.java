@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nam_nguyen_03.application.common.util.ResponseHelper;
 import com.nam_nguyen_03.application.role.dto.GiraRoleDTO;
 import com.nam_nguyen_03.application.role.model.GiraRole;
 import com.nam_nguyen_03.application.role.service.GiraRoleService;
@@ -34,19 +35,15 @@ public class GiraRoleController {
 	
 	@GetMapping
 	public Object findAllRoles() {
-		return new ResponseEntity<>(service.findAllEntity(), HttpStatus.OK);
+		return ResponseHelper.getResponse(service.findAllEntity(), HttpStatus.OK, false);
 	}
 	
 	@PostMapping
-	public Object createNewRole(@Valid @RequestBody GiraRoleDTO dto, 
-			BindingResult bindingResult) {
+	public Object createNewRole(@Valid @RequestBody GiraRoleDTO dto, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			return new ResponseEntity<>(bindingResult.getAllErrors()
-					.stream().map(t -> t.getDefaultMessage()).collect(Collectors.toList())
-					, HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getResponse(bindingResult, HttpStatus.BAD_REQUEST, true);
 		}
 		
-		GiraRole role = service.save(dto);
-		return new ResponseEntity<>(role, HttpStatus.CREATED);
+		return ResponseHelper.getResponse(service.save(dto), HttpStatus.CREATED, false);
 	}
 }
