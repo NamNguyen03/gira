@@ -3,6 +3,7 @@
  */
 package com.nam_nguyen_03.application.role.dto;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,5 +28,5 @@ public class GiraRoleDTO {
 	@NotBlank(message = "description should not blank")
 	private String description;
 
-	private Set<GiraGroupDTO> groups;
+	private Set<GiraGroupDTO> groups =  new LinkedHashSet<>();
 }

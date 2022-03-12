@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.hibernate.loader.plan.exec.internal.RootHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.nam_nguyen_03.application.common.util.ResponseHelper;
 import com.nam_nguyen_03.application.role.dto.GiraGroupDTO;
 import com.nam_nguyen_03.application.role.dto.GiraGroupWithRolesDTO;
 import com.nam_nguyen_03.application.role.service.GiraGroupService;
@@ -36,22 +37,17 @@ public class GiraGroupController {
 	
 	@GetMapping
 	public Object findAllGroups() {
-		List<GiraGroupDTO> groups = service.findAllDto();
-		
-		return new ResponseEntity<>(groups, HttpStatus.OK);
+		return ResponseHelper.getResponse( service.findAllDto(), HttpStatus.OK, false);
 	}
 	
 	@PostMapping
 	public Object createNewGroup(@Valid @RequestBody GiraGroupDTO dto,
 			BindingResult result) {
 		if(result.hasErrors()) {
-			return new ResponseEntity<>(result.getAllErrors()
-					.stream().map(t -> t.getDefaultMessage()).collect(Collectors.toList()), HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getResponse(result, HttpStatus.BAD_REQUEST, true);
 		}
 		
-		GiraGroupDTO newGroup = service.createNewGroup(dto);
-		
-		return new ResponseEntity<>(newGroup, HttpStatus.CREATED);
+		return ResponseHelper.getResponse(service.createNewGroup(dto), HttpStatus.CREATED, false);
 	}
 	
 	@PostMapping("add-role/{group-id}/{role-id}")
@@ -60,11 +56,11 @@ public class GiraGroupController {
 		GiraGroupWithRolesDTO modifiedGroup = service.addRole(groupId, roleId);
 		
 		if (modifiedGroup == null) {
-			return new ResponseEntity<>("Group or Role is not existing"
-							, HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getResponse("Group or Role is not existing"
+							, HttpStatus.BAD_REQUEST, true);
 		}
 		
-		return new ResponseEntity<>(modifiedGroup, HttpStatus.OK);
+		return ResponseHelper.getResponse(modifiedGroup, HttpStatus.OK, false);
 	}
 	
 	@DeleteMapping("remove-role/{group-id}/{role-id}")
@@ -73,10 +69,10 @@ public class GiraGroupController {
 		GiraGroupWithRolesDTO modifiedGroup = service.removeRole(groupId, roleId);
 		
 		if (modifiedGroup == null) {
-			return new ResponseEntity<>("Group or Role is not existing"
-							, HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getResponse("Group or Role is not existing"
+							, HttpStatus.BAD_REQUEST, true);
 		}
 		
-		return new ResponseEntity<>(modifiedGroup, HttpStatus.OK);
+		return ResponseHelper.getResponse(modifiedGroup, HttpStatus.OK, false);
 	}
 }

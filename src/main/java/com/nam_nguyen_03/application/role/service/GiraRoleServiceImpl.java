@@ -33,10 +33,10 @@ public class GiraRoleServiceImpl implements GiraRoleService {
 	}
 
 	@Override
-	public GiraRole save(GiraRoleDTO dto) {
+	public GiraRoleDTO save(GiraRoleDTO dto) {
 		// map dto to entity
 		GiraRole role = GiraRoleMapper.INSTANCE.mapToEntity(dto);
-		return repository.save(role);
+		return GiraRoleMapper.INSTANCE.toDto(repository.save(role));
 	}
 
 }
