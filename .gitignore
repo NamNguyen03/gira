@@ -36,3 +36,6 @@ build/
 ### build maven ###
 
 .attach_*
+
+*.log
+*.logs

@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.extern.slf4j.Slf4j;
+
 import com.nam_nguyen_03.application.common.util.ResponseHelper;
 import com.nam_nguyen_03.application.role.dto.GiraGroupDTO;
 import com.nam_nguyen_03.application.role.dto.GiraGroupWithRolesDTO;
@@ -31,12 +34,15 @@ import com.nam_nguyen_03.application.role.service.GiraGroupService;
  */
 @RestController
 @RequestMapping("groups")
+@Slf4j
 public class GiraGroupController {
 	@Autowired
 	private GiraGroupService service;
 	
 	@GetMapping
 	public Object findAllGroups() {
+		log.info("Find all gira groups STARTED");
+		log.debug("calling GiraGroupService.findAllDto()");
 		return ResponseHelper.getResponse( service.findAllDto(), HttpStatus.OK, false);
 	}
 	
