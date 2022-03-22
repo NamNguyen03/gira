@@ -23,9 +23,9 @@ import lombok.Setter;
 public class GiraRoleDTO {
 	private UUID id;
 	
-	@Size(max = 30 , min =  3 , message = "length code should to 3 from 30 character")
+	@Size(max = 30 , min =  3 , message = "{role.code.size}")
 	private String code;
-	@NotBlank(message = "description should not blank")
+	@NotBlank(message = "{role.description.notblank}")
 	private String description;
 
 	private Set<GiraGroupDTO> groups =  new LinkedHashSet<>();

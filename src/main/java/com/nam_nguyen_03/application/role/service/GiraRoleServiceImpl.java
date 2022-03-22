@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.nam_nguyen_03.application.role.dto.GiraRoleDTO;
 import com.nam_nguyen_03.application.role.mapper.GiraRoleMapper;
-import com.nam_nguyen_03.application.role.model.GiraRole;
 import com.nam_nguyen_03.application.role.repository.GiraRoleRepo;
 
 /**
@@ -34,9 +33,7 @@ public class GiraRoleServiceImpl implements GiraRoleService {
 
 	@Override
 	public GiraRoleDTO save(GiraRoleDTO dto) {
-		// map dto to entity
-		GiraRole role = GiraRoleMapper.INSTANCE.mapToEntity(dto);
-		return GiraRoleMapper.INSTANCE.toDto(repository.save(role));
+		return GiraRoleMapper.INSTANCE.toDto(repository.save(GiraRoleMapper.INSTANCE.mapToEntity(dto)));
 	}
 
 }
