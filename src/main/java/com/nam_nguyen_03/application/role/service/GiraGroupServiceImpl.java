@@ -43,9 +43,7 @@ public class GiraGroupServiceImpl implements GiraGroupService {
 
 	@Override
 	public GiraGroupDTO createNewGroup(GiraGroupDTO dto) {
-		GiraGroup group = GiraGroupMapper.INSTANCE.toModel(dto);
-		GiraGroup newGroup = repository.save(group);
-		return GiraGroupMapper.INSTANCE.toDTO(newGroup);
+		return GiraGroupMapper.INSTANCE.toDTO(repository.save(GiraGroupMapper.INSTANCE.toModel(dto)));
 	}
 
 	@Override
@@ -60,9 +58,8 @@ public class GiraGroupServiceImpl implements GiraGroupService {
 		}
 		
 		group.addRole(role);
-		GiraGroup modifiedGroup = repository.save(group);
 		
-		return GiraGroupMapper.INSTANCE.toDtoWithRoles(modifiedGroup);
+		return GiraGroupMapper.INSTANCE.toDtoWithRoles(repository.save(group));
 	}
 
 	@Override
@@ -77,9 +74,8 @@ public class GiraGroupServiceImpl implements GiraGroupService {
 		}
 		
 		group.removeRole(role);
-		GiraGroup modifiedGroup = repository.save(group);
 		
-		return GiraGroupMapper.INSTANCE.toDtoWithRoles(modifiedGroup);
+		return GiraGroupMapper.INSTANCE.toDtoWithRoles(repository.save(group));
 	}
 
 }

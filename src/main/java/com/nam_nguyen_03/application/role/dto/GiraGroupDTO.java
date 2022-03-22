@@ -20,8 +20,9 @@ import lombok.Setter;
 public class GiraGroupDTO {
 	private UUID id;
 	
-	@Size(max = 100 , min =  3 , message = "length code should to 3 from 100 character")
+	@Size(min = 5, max = 36, message = "{group.code.size}")
 	private String code;
-	@NotBlank(message = "description should not blank")
+	
+	@NotBlank(message = "{group.description.notblank}")
 	private String description;
 }

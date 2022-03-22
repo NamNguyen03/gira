@@ -2,16 +2,9 @@
  * 
  */
 package com.nam_nguyen_03.application.role.controller;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
-
-import org.hibernate.loader.plan.exec.internal.RootHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +35,6 @@ public class GiraGroupController {
 	@GetMapping
 	public Object findAllGroups() {
 		log.info("Find all gira groups STARTED");
-		log.debug("calling GiraGroupService.findAllDto()");
 		return ResponseHelper.getResponse( service.findAllDto(), HttpStatus.OK, false);
 	}
 	

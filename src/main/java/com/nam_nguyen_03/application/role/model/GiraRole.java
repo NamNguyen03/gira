@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.nam_nguyen_03.application.common.model.BaseEntity;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,9 +32,12 @@ import lombok.experimental.SuperBuilder;
 public class GiraRole extends BaseEntity {
 	@Size(max = 30 , min =  3 )
 	private String code;
+
 	@NotBlank
 	private String description;
+	
 	@ManyToMany(mappedBy = "roles")
+	@Builder.Default
 	private Set<GiraGroup> groups = new LinkedHashSet<>();
 }
 

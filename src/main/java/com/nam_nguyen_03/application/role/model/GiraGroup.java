@@ -16,6 +16,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.nam_nguyen_03.application.common.model.BaseEntity;
+import com.nam_nguyen_03.application.user.model.GiraUser;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,8 +47,18 @@ public class GiraGroup extends BaseEntity {
 			joinColumns = @JoinColumn(name = "group_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 			)
+	@Builder.Default
 	private Set<GiraRole> roles  = new LinkedHashSet<>();
 	
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinTable(
+		name = "gira_group_user",
+		joinColumns = @JoinColumn(name = "group_id"),
+		inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	@Builder.Default
+	private Set<GiraUser> users = new LinkedHashSet<>();
+
 	public void addRole(GiraRole role) {
 		roles.add(role);
 		role.getGroups().add(this);

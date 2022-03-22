@@ -4,10 +4,8 @@
 package com.nam_nguyen_03.application.common.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -35,18 +33,22 @@ import lombok.experimental.SuperBuilder;
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 	@Id
-	@GeneratedValue
 	@Type(type = "uuid-char")
+	@GeneratedValue
 	protected UUID id;
+	
 	@Version
 	protected int version;
-	@CreatedBy
-	protected String createBy;
-	@CreatedDate
-	protected Date createDate;
-	@LastModifiedBy
-	protected String updateBy;
-	@LastModifiedDate
-	protected Date updateDate;
 	
+	@CreatedDate
+	protected LocalDateTime createdAt;
+	
+	@CreatedBy
+	protected String createdBy;
+	
+	@LastModifiedDate
+	protected LocalDateTime lastModifiedAt;
+	
+	@LastModifiedBy
+	protected String lastModifiedBy;
 }
