@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @RestController
-@RequestMapping("users")
+@RequestMapping("api/v1/users")
 public class GiraUserController {
     
     @Autowired
