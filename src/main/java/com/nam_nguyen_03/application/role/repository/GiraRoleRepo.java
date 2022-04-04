@@ -17,4 +17,6 @@ import com.nam_nguyen_03.application.role.model.GiraRole;
 @Repository
 public interface GiraRoleRepo extends JpaRepository<GiraRole, UUID> {
 
+    boolean existsByCode(String code);
+
 }

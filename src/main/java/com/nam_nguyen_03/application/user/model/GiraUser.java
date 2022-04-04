@@ -17,6 +17,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -29,6 +30,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @Table(name = "gira_user")
+@ToString
 public class GiraUser extends BaseEntity {
  
     @Column(name = "username", unique = true, nullable = false, length = 100)

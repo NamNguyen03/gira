@@ -26,7 +26,7 @@ import com.nam_nguyen_03.application.role.service.GiraGroupService;
  *
  */
 @RestController
-@RequestMapping("groups")
+@RequestMapping("api/v1/groups")
 @Slf4j
 public class GiraGroupController {
 	@Autowired
