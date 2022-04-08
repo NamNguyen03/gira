@@ -3,25 +3,22 @@ package com.nam_nguyen_03.application.role.validation.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.nam_nguyen_03.application.role.repository.GiraRoleRepo;
-import com.nam_nguyen_03.application.role.validation.anotation.UniqueCodeRole;
+import com.nam_nguyen_03.application.role.repository.GiraGroupRepo;
+import com.nam_nguyen_03.application.role.validation.anotation.UniqueCodeGroup;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * @author nam
- *
- */
-public class UniqueCodeRoleValidator implements ConstraintValidator<UniqueCodeRole, String> {
+public class UniqueCodeGroupValidator implements ConstraintValidator<UniqueCodeGroup, String>  {
 
+ 
     private String message;
     
     @Autowired
-    private GiraRoleRepo repo;
+    private GiraGroupRepo repo;
 
 	@Override
-	public void initialize(UniqueCodeRole uniqueCodeRole) {
-		message = uniqueCodeRole.message();
+	public void initialize(UniqueCodeGroup uniqueCodeGroup) {
+		message = uniqueCodeGroup.message();
 	}
 
     @Override
