@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
 
 import com.nam_nguyen_03.application.common.util.ResponseHelper;
+import com.nam_nguyen_03.application.role.dto.GiraRoleCreateDTO;
 import com.nam_nguyen_03.application.role.dto.GiraRoleDTO;
 import com.nam_nguyen_03.application.role.service.GiraRoleService;
 
@@ -43,7 +44,7 @@ public class GiraRoleController {
 	}
 	
 	@PostMapping
-	public Object createNewRole(@Valid @RequestBody GiraRoleDTO dto, BindingResult bindingResult) {
+	public Object createNewRole(@Valid @RequestBody GiraRoleCreateDTO dto, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return ResponseHelper.getResponse(bindingResult, HttpStatus.BAD_REQUEST, true);
 		}

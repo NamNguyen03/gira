@@ -8,7 +8,7 @@ import java.util.UUID;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.nam_nguyen_03.application.role.validation.anotation.UniqueCodeRole;
+import com.nam_nguyen_03.application.role.validation.anotation.UniqueCodeGroup;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +22,8 @@ import lombok.Setter;
 public class GiraGroupDTO {
 	private UUID id;
 	
-	@Size(min = 5, max = 36, message = "{group.code.size}")
-	@UniqueCodeRole(message = "{group.code.unique-code}" )
+	@Size(min = 3, max = 36, message = "{group.code.size}")
+	@UniqueCodeGroup(message = "{group.code.unique}" )
 	private String code;
 	
 	@NotBlank(message = "{group.description.notblank}")

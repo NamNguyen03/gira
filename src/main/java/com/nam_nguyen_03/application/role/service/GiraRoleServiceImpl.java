@@ -7,12 +7,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nam_nguyen_03.application.role.dto.GiraRoleCreateDTO;
 import com.nam_nguyen_03.application.role.dto.GiraRoleDTO;
 import com.nam_nguyen_03.application.role.mapper.GiraRoleMapper;
 import com.nam_nguyen_03.application.role.model.GiraRole;
@@ -37,8 +35,8 @@ public class GiraRoleServiceImpl implements GiraRoleService {
 	}
 
 	@Override
-	public GiraRoleDTO save(GiraRoleDTO dto) {
-		return GiraRoleMapper.INSTANCE.toDto(repository.save(GiraRoleMapper.INSTANCE.mapToEntity(dto)));
+	public GiraRoleDTO save(GiraRoleCreateDTO dto) {
+		return GiraRoleMapper.INSTANCE.toDto(repository.save(GiraRoleMapper.INSTANCE.mapFromCreateDtoToEntity(dto)));
 	}
 
 	@Override
